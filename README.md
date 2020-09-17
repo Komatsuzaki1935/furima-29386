@@ -17,7 +17,6 @@
 
 - has_many :products
 - has_many :comments
-- has_many :purchases
 
 ## products テーブル
 
@@ -35,7 +34,6 @@
 ### Association
 
 - belongs_to :user
-- belongs_to :purchase
 - has_many :comments
 
 ## comments テーブル
@@ -51,13 +49,10 @@
 - belongs_to :user
 - belongs_to :product
 
-## purchases テーブル
+## deliveries テーブル
 
-| Column                | Type   | Options     |
-| --------------------- | ------ | ----------- |
-| credit_num            | integer | null: false |
-| credit_deadline       | integer | null: false |
-| credit_cvv            | integer | null: false |
+| Column                | Type    | Options     |
+| --------------------- | ------- | ----------- |
 | postal_code           | integer | null: false |
 | postal_prefecture     | string  | null: false |
 | postal_municipalities | string  | null: false |
@@ -67,5 +62,15 @@
 
 ### Association
 
-- belongs_to :user
-- has_many :products
+- belongs_to :purchase
+
+## purchases テーブル
+
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| user    | references | null: false, foreign_key: true |
+| product | references | null: false, foreign_key: true |
+
+### Association
+
+- has_many :delivery
