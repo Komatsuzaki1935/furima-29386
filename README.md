@@ -25,7 +25,7 @@
 | ------------------ | ------- | ----------- |
 | name               | string  | null: false |
 | explanation        | text    | null: false |
-| price_id           | integer | null: false |
+| price              | integer | null: false |
 | category_id        | integer | null: false |
 | condition_id       | integer | null: false |
 | shipping_charge_id | integer | null: false |
@@ -55,10 +55,10 @@
 
 | Column                | Type    | Options     |
 | --------------------- | ------- | ----------- |
-| postal_code_id        | integer | null: false |
-| postal_prefecture     | string  | null: false |
+| postal_code_id        | string  | null: false |
+| postal_prefecture     | integer | null: false |
 | postal_municipalities | string  | null: false |
-| postal_address_id     | integer | null: false |
+| postal_address_id     | string  | null: false |
 | postal_building       | string  |             |
 | phone_num             | string  | null: false |
 
