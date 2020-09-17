@@ -56,17 +56,17 @@
 
 | Column                | Type       | Options                        |
 | --------------------- | ---------- | ------------------------------ |
-| postal_code_id        | string     | null: false                    |
-| postal_prefecture     | integer    | null: false                    |
+| postal_code           | string     | null: false                    |
+| postal_prefecture_id  | integer    | null: false                    |
 | postal_municipalities | string     | null: false                    |
-| postal_address_id     | string     | null: false                    |
+| postal_address        | string     | null: false                    |
 | postal_building       | string     |                                |
 | phone_num             | string     | null: false                    |
 | purchase              | references | null: false, foreign_key: true |
 
 ### Association
 
-- has_one :purchase
+- belongs_to :purchase
 
 ## purchases テーブル
 
