@@ -59,7 +59,7 @@
 | postal_prefecture     | string  | null: false |
 | postal_municipalities | string  | null: false |
 | postal_address_id     | integer | null: false |
-| postal_building       | string  | null: false |
+| postal_building       | string  |             |
 | phone_num             | string  | null: false |
 
 ### Association
