@@ -17,26 +17,27 @@
 
 - has_many :products
 - has_many :comments
-- has_many :purchases
+- has_one :purchase
 
 ## products テーブル
 
-| Column             | Type    | Options     |
-| ------------------ | ------- | ----------- |
-| name               | string  | null: false |
-| explanation        | text    | null: false |
-| price              | integer | null: false |
-| category_id        | integer | null: false |
-| condition_id       | integer | null: false |
-| shipping_charge_id | integer | null: false |
-| shipping_from_id   | integer | null: false |
-| shipping_day_id    | integer | null: false |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| name               | string     | null: false                    |
+| explanation        | text       | null: false                    |
+| price              | integer    | null: false                    |
+| category_id        | integer    | null: false                    |
+| condition_id       | integer    | null: false                    |
+| shipping_charge_id | integer    | null: false                    |
+| shipping_from_id   | integer    | null: false                    |
+| shipping_day_id    | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - has_many :comments
-- belongs_to :purchase
+- has_one :purchase
 
 ## comments テーブル
 
@@ -53,18 +54,19 @@
 
 ## deliveries テーブル
 
-| Column                | Type    | Options     |
-| --------------------- | ------- | ----------- |
-| postal_code_id        | string  | null: false |
-| postal_prefecture     | integer | null: false |
-| postal_municipalities | string  | null: false |
-| postal_address_id     | string  | null: false |
-| postal_building       | string  |             |
-| phone_num             | string  | null: false |
+| Column                | Type       | Options                        |
+| --------------------- | ---------- | ------------------------------ |
+| postal_code_id        | string     | null: false                    |
+| postal_prefecture     | integer    | null: false                    |
+| postal_municipalities | string     | null: false                    |
+| postal_address_id     | string     | null: false                    |
+| postal_building       | string     |                                |
+| phone_num             | string     | null: false                    |
+| purchase              | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :purchase
+- has_one :purchase
 
 ## purchases テーブル
 
@@ -76,5 +78,5 @@
 ### Association
 
 - belongs_to :user
-- has_many :products
-- has_many :delivery
+- belongs_to :product
+- has_one :delivery
