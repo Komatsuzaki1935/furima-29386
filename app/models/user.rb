@@ -4,12 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         validates :nickname, uniqueness: true, presence: true
-         validates :email, uniqueness: true, presence: true
-         validates :encrypted_password, length: { minimum: 6 }, presence: true
-         validates :first_name, presence: true
-         validates :last_name, presence: true
-         validates :furigana_first_name, presence: true
-         validates :furigana_last_name, presence: true
-         validates :birthday, presence: true
+         with_options presence: true do
+          validates :nickname, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input full-width characters."}
+          validates :password, length: { minimum: 6 }, format: { with: /\A[a-zA-Z0-9]+\z/, message: "is invalid. Input full-width characters."}
+          validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input full-width characters."}
+          validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input full-width characters."}
+          validates :furigana_first_name, format: { with: /\A[ァ-ヶー－]+\z/, message: "is invalid. Input full-width characters."}
+          validates :furigana_last_name, format: { with: /\A[ァ-ヶー－]+\z/, message: "is invalid. Input full-width characters."}
+        end
 end
