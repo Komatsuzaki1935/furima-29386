@@ -59,8 +59,13 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password can't be blank")
       end
-      it "パスワードに半角英数字以外が含まれていると登録できないこと" do
-        @user.password = "テストパスワード"
+      it "パスワードは半角英字のみでは登録できないこと" do
+        @user.password = "abcdef"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password can't be blank")
+      end
+      it "パスワードは半角数字のみでは登録できないこと" do
+        @user.password = "123456"
         @user.valid?
         expect(@user.errors.full_messages).to include("Password can't be blank")
       end
