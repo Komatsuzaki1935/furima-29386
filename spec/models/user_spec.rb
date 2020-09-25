@@ -52,7 +52,7 @@ describe User do
       it "メールアドレスに＠が含まれていないと登録できないこと" do
         @user.email = "test123test.com"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email can't be blank")
+        expect(@user.errors.full_messages).to include("Email is invalid. Input full-width characters.")
       end
       it "パスワードが空では登録できないこと" do
         @user.password = ""
@@ -62,12 +62,12 @@ describe User do
       it "パスワードは半角英字のみでは登録できないこと" do
         @user.password = "abcdef"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password can't be blank")
+        expect(@user.errors.full_messages).to include("Password is invalid. Input full-width characters.")
       end
       it "パスワードは半角数字のみでは登録できないこと" do
         @user.password = "123456"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password can't be blank")
+        expect(@user.errors.full_messages).to include("Password is invalid. Input full-width characters.")
       end
       it "パスワードが5文字以下であれば登録できない" do
         @user.password = "00000"
@@ -88,7 +88,7 @@ describe User do
       it "苗字は全角（漢字・ひらがな・カタカナ）以外では登録できない" do
         @user.firs_tname = "tanaka"
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name can't be blank")
+        expect(@user.errors.full_messages).to include("First name is invalid. Input full-width characters.")
       end
       it "名前が空では登録できない" do
         @user.last_name = ""
@@ -98,7 +98,7 @@ describe User do
       it "名前は全角（漢字・ひらがな・カタカナ）以外では登録できない" do
         @user.last_name = "tarou"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name can't be blank")
+        expect(@user.errors.full_messages).to include("Last name is invalid. Input full-width characters.")
       end
       it "苗字のフリガナが空では登録できない" do
         @user.firs_tname = ""
@@ -108,7 +108,7 @@ describe User do
       it "苗字のフリガナは全角（カタカナ）以外では登録できない" do
         @user.firs_tname = "tanaka"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Furigana first name can't be blank")
+        expect(@user.errors.full_messages).to include("Furigana first name is invalid. Input full-width characters.")
       end
       it "名前のフリガナが空では登録できない" do
         @user.furigana_last_name = ""
@@ -118,7 +118,7 @@ describe User do
       it "名前のフリガナは全角（カタカナ）以外では登録できない" do
         @user.furigana_last_name = "tarou"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Furigana last name can't be blank")
+        expect(@user.errors.full_messages).to include("Furigana last name is invalid. Input full-width characters.")
       end
       it "誕生日が空では登録できない" do
         @user.birthday = ""
