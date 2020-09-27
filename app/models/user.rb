@@ -11,4 +11,6 @@ class User < ApplicationRecord
           validates :furigana_first_name, format: { with: /\A[ァ-ヶー－]+\z/,   message: "is invalid. Input full-width characters."}
           validates :furigana_last_name,  format: { with: /\A[ァ-ヶー－]+\z/,   message: "is invalid. Input full-width characters."}
         end
+  
+  has_many :items
 end
