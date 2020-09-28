@@ -33,7 +33,7 @@ describe User do
 
     context '新規登録がうまくいかないとき' do
       it "ニックネームが空では登録できないこと" do
-        @user.name = ""
+        @user.nickname = ""
         @user.valid?
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
