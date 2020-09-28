@@ -50,8 +50,18 @@ describe Item do
         @item.valid?
         expect(@item.errors.full_messages).to include("CategoryId Select")
       end
+      it "category_id = 1 だと登録できないこと" do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("CategoryId Select")
+      end
       it "商品状態を選択しないと登録できないこと" do
         @item.condition_id = ""
+        @item.valid?
+        expect(@item.errors.full_messages).to include("ConditionId Select")
+      end
+      it "condition_id = 1 だと登録できないこと" do
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("ConditionId Select")
       end
@@ -60,13 +70,28 @@ describe Item do
         @item.valid?
         expect(@item.errors.full_messages).to include("ShippingChargeId Select")
       end
+      it "shipping_charge_id = 1 だと登録できないこと" do
+        @item.shipping_charge_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("ShippingChargeId Select")
+      end
       it "配送元を選択しないと登録できないこと" do
         @item.shipping_from_id = ""
         @item.valid?
         expect(@item.errors.full_messages).to include("ShippingFromId Select")
       end
+      it "shipping_from_id = 1 だと登録できないこと" do
+        @item.shipping_from_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("ShippingFromId Select")
+      end
       it "配送日を選択しないと登録できないこと" do
         @item.shipping_day_id = ""
+        @item.valid?
+        expect(@item.errors.full_messages).to include("ShippingDayId Select")
+      end
+      it "shipping_day_id = 1 だと登録できないこと" do
+        @item.shipping_day_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("ShippingDayId Select")
       end
@@ -80,8 +105,13 @@ describe Item do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price Half-width number")
       end
-      it "料金 が300から9999999の間でないと登録できないこと" do
-        @item.price = "10"
+      it "料金 が300未満だと登録できないこと" do
+        @item.price = 299
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price Out of setting range")
+      end
+      it "料金 が10000000以上だと登録できないこと" do
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price Out of setting range")
       end
