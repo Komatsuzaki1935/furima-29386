@@ -11,25 +11,27 @@ describe Item do
         expect(@item).to be_valid
       end
       it "カテゴリーを選択すれば登録できる" do
+        @item.category_id = 2
         expect(@item).to be_valid
       end
       it "商品状態を選択すれば登録できる" do
+        @item.condition_id = 3
         expect(@item).to be_valid
       end
       it "配送料を選択すれば登録できる" do
+        @item.shipping_charge_id = 2
         expect(@item).to be_valid
       end
       it "配送元を選択すれば登録できる" do
+        @item.shipping_from_id = 30
         expect(@item).to be_valid
       end
       it "配送日を選択すれば登録できる" do
+        @item.shipping_charge_id = 4
         expect(@item).to be_valid
       end
-      it "料金 が半角数字であること" do
-        expect(@item).to be_valid
-      end
-      it "料金 が300から9999999の間であることであること" do
-        @item.price = "5000"
+      it "料金 が半角数字かつ300から9999999の間であること" do
+        @item.price = 5000
         expect(@item).to be_valid
       end
     end
