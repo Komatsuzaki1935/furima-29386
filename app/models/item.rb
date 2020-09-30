@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shipping_day
 
   with_options presence: true do
+    validates :image
     validates :name
     validates :explanation
     validates :price,              numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "Out of setting range" }, format: { with: /\A[0-9]+\z/, message: "Half-width number"}
