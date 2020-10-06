@@ -39,10 +39,8 @@ class ItemsController < ApplicationController
   def destroy
     if current_user.id != @item.user_id
       redirect_to new_user_session_path
-    elsif @item.destroy(item_params)
+    elsif @item.destroy
       redirect_to root_path
-    else
-      render :edit
     end
   end
 
